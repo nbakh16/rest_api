@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class MyListTile extends StatelessWidget {
-  MyListTile({
+  const MyListTile({
     Key? key, required this.title, required this.myTap
   }) : super(key: key);
 
-  String title;
+  final String title;
   final Function myTap;
 
   @override

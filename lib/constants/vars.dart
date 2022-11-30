@@ -1,0 +1,4 @@
+enum TabOptions {
+  allNews,
+  trending,
+}
