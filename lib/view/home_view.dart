@@ -18,6 +18,8 @@ class _HomeViewState extends State<HomeView> {
   int totalPage = 8;
   int currentPageIndex = 0;
 
+  String defaultSort = SortListOptions.time.name;
+
   @override
   Widget build(BuildContext context) {
     Color txtColor = Provider.of<DarkThemeProvider>(context).getDarkTheme
@@ -133,6 +135,24 @@ class _HomeViewState extends State<HomeView> {
                         ),
                       ],
                     ),
+                  ),
+                  tabOptions == TabOptions.trending ? Container() :
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Material(
+                      color: Theme.of(context).primaryColor,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: DropdownButton(
+                          dropdownColor: Theme.of(context).primaryColor,
+                          value: defaultSort,
+                          items: dropDownItems,
+                          onChanged: (value) {
+
+                          }
+                        ),
+                      ),
+                    ),
                   )
                 ],
               ),
@@ -140,5 +160,25 @@ class _HomeViewState extends State<HomeView> {
         ),
       ),
     );
+
+  }
+
+
+  List<DropdownMenuItem<String>> get dropDownItems {
+    List<DropdownMenuItem<String>> menu = [
+      DropdownMenuItem(
+        value: SortListOptions.relevant.name,
+        child: Text(SortListOptions.relevant.name),
+      ),
+      DropdownMenuItem(
+        value: SortListOptions.popular.name,
+        child: Text(SortListOptions.popular.name),
+      ),
+      DropdownMenuItem(
+        value: SortListOptions.time.name,
+        child: Text(SortListOptions.time.name),
+      ),
+    ];
+    return menu;
   }
 }
