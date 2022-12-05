@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../provider/dark_theme_provider.dart';
 
 class ThemeStyles{
   static ThemeData themeData(BuildContext context, bool isDark){
@@ -11,7 +8,7 @@ class ThemeStyles{
 
       primaryColor: isDark ? Colors.deepPurple : Colors.lightGreen,
       colorScheme: ThemeData().colorScheme.copyWith(
-        secondary: isDark ? Colors.deepPurple : Colors.black,
+        secondary: isDark ? Colors.blueGrey : Colors.deepPurple,
         brightness: isDark ? Brightness.dark : Brightness.light,
       ),
       cardColor: isDark ? Colors.deepPurple : Colors.lightGreen,

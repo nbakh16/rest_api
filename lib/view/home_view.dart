@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:rest_api/provider/dark_theme_provider.dart';
 import '../constants/vars.dart';
 import '../widgets/my_btn.dart';
+import '../widgets/my_data_list.dart';
 import '../widgets/my_drawer.dart';
 import '../widgets/my_tab_btn.dart';
 
@@ -48,7 +49,7 @@ class _HomeViewState extends State<HomeView> {
                   Row(
                     children: [
                       MyTabBtn(
-                        title: "All News",
+                        title: "All Items",
                         color: tabOptions == TabOptions.allNews
                             ? Theme.of(context).cardColor : Colors.transparent,
                         fontSize: tabOptions == TabOptions.allNews
@@ -65,7 +66,7 @@ class _HomeViewState extends State<HomeView> {
                         },
                       ),
                       MyTabBtn(
-                        title: "Trending",
+                        title: "Recent",
                         color: tabOptions == TabOptions.trending
                             ? Theme.of(context).cardColor : Colors.transparent,
                         fontSize: tabOptions == TabOptions.trending
@@ -136,22 +137,37 @@ class _HomeViewState extends State<HomeView> {
                       ],
                     ),
                   ),
-                  tabOptions == TabOptions.trending ? Container() :
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Material(
-                      color: Theme.of(context).primaryColor,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        child: DropdownButton(
-                          dropdownColor: Theme.of(context).primaryColor,
-                          value: defaultSort,
-                          items: dropDownItems,
-                          onChanged: (value) {
 
-                          }
+                  tabOptions == TabOptions.trending ? Container() :
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      const Text("Sort by"),
+                      const SizedBox(width: 8,),
+                      Material(
+                        color: Theme.of(context).primaryColor,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: DropdownButton(
+                            dropdownColor: Theme.of(context).primaryColor,
+                            value: defaultSort,
+                            items: dropDownItems,
+                            onChanged: (value) {
+
+                            }
+                          ),
                         ),
                       ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 8,),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: 16,
+                      itemBuilder: (context, index){
+                        return const MyDataList();
+                      }
                     ),
                   )
                 ],
