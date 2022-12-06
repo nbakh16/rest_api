@@ -2,8 +2,8 @@ import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:rest_api/constants/vars.dart';
 
-class MyDataList extends StatelessWidget {
-  const MyDataList({Key? key}) : super(key: key);
+class AllItemsList extends StatelessWidget {
+  const AllItemsList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

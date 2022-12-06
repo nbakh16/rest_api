@@ -9,11 +9,11 @@ class Utils {
   bool get getTheme => Provider.of<DarkThemeProvider>(context).getDarkTheme;
 
   Color get baseShimmerColor =>
-      getTheme ? Colors.grey.shade500 : Colors.grey.shade200;
+      Theme.of(context).colorScheme.onSecondary;
 
   Color get highlightShimmerColor =>
-      getTheme ? Colors.grey.shade700 : Colors.grey.shade400;
+      getTheme ? Colors.deepPurple.shade500 : Colors.green.shade300;
 
   Color get widgetShimmerColor =>
-      getTheme ? Colors.grey.shade600 : Colors.grey.shade100;
+      getTheme ? Colors.deepPurple.shade600 : Colors.green.shade400;
 }

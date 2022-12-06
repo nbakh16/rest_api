@@ -1,10 +1,11 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rest_api/provider/dark_theme_provider.dart';
+import 'package:rest_api/view/trending_list.dart';
 import '../constants/vars.dart';
-import '../widgets/loading_widget.dart';
 import '../widgets/my_btn.dart';
-import '../widgets/my_data_list.dart';
+import 'all_items_list.dart';
 import '../widgets/my_drawer.dart';
 import '../widgets/my_tab_btn.dart';
 
@@ -24,6 +25,8 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     Color txtColor = Provider.of<DarkThemeProvider>(context).getDarkTheme
         ? Colors.white : Colors.black;
 
@@ -170,18 +173,29 @@ class _HomeViewState extends State<HomeView> {
                     child: ListView.builder(
                       itemCount: 16,
                       itemBuilder: (context, index){
-                        return const MyDataList();
+                        return const AllItemsList();
                       }
                     ),
                   )
-                  : const LoadingWidget()
+                  : SizedBox(
+                    height: size.height * 0.6,
+                    child: Swiper(
+                      itemWidth: size.width * 0.85,
+                      layout: SwiperLayout.STACK,
+                      autoplay: true,
+                      viewportFraction: 0.85,
+                      itemCount: 16,
+                      itemBuilder: (context, index){
+                        return const TrendingList();
+                      },
+                    ),
+                  )
                 ],
               ),
             )
         ),
       ),
     );
-
   }
 
 

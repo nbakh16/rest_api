@@ -30,15 +30,17 @@ class _LoadingWidgetState extends State<LoadingWidget> {
     Size size = MediaQuery.of(context).size;
     return Expanded(
       child: ListView.builder(
-          itemCount: 16,
-          itemBuilder: (context, index){
-            return ShimmerLoadingEffect(
-              size: size,
-              baseShimmerColor: baseShimmerColor,
-              highlightShimmerColor: highlightShimmerColor,
-              widgetShimmerColor: widgetShimmerColor
-            );
-          }
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: 16,
+        itemBuilder: (context, index){
+          return ShimmerLoadingEffect(
+            size: size,
+            baseShimmerColor: baseShimmerColor,
+            highlightShimmerColor: highlightShimmerColor,
+            widgetShimmerColor: widgetShimmerColor
+          );
+        }
       ),
     );
   }
