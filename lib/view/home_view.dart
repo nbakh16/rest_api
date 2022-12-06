@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rest_api/provider/dark_theme_provider.dart';
 import '../constants/vars.dart';
+import '../widgets/loading_widget.dart';
 import '../widgets/my_btn.dart';
 import '../widgets/my_data_list.dart';
 import '../widgets/my_drawer.dart';
@@ -15,11 +16,11 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  var tabOptions = TabOptions.allNews;
+  var tabOptions = TabOptions.allItems;
   int totalPage = 8;
   int currentPageIndex = 0;
 
-  String defaultSort = SortListOptions.time.name;
+  String? defaultSort = SortListOptions.time.name;
 
   @override
   Widget build(BuildContext context) {
@@ -50,23 +51,23 @@ class _HomeViewState extends State<HomeView> {
                     children: [
                       MyTabBtn(
                         title: "All Items",
-                        color: tabOptions == TabOptions.allNews
+                        color: tabOptions == TabOptions.allItems
                             ? Theme.of(context).cardColor : Colors.transparent,
-                        fontSize: tabOptions == TabOptions.allNews
+                        fontSize: tabOptions == TabOptions.allItems
                             ? 22 : 16,
-                        fontWeight: tabOptions == TabOptions.allNews
+                        fontWeight: tabOptions == TabOptions.allItems
                             ? FontWeight.bold: FontWeight.normal,
                         myTap: (){
-                          if(tabOptions == TabOptions.allNews) {
+                          if(tabOptions == TabOptions.allItems) {
                             return;
                           }
                           setState((){
-                            tabOptions = TabOptions.allNews;
+                            tabOptions = TabOptions.allItems;
                           });
                         },
                       ),
                       MyTabBtn(
-                        title: "Recent",
+                        title: "Trending",
                         color: tabOptions == TabOptions.trending
                             ? Theme.of(context).cardColor : Colors.transparent,
                         fontSize: tabOptions == TabOptions.trending
@@ -153,7 +154,9 @@ class _HomeViewState extends State<HomeView> {
                             value: defaultSort,
                             items: dropDownItems,
                             onChanged: (value) {
-
+                              setState((){
+                                defaultSort = value;
+                              });
                             }
                           ),
                         ),
@@ -162,7 +165,8 @@ class _HomeViewState extends State<HomeView> {
                   ),
 
                   const SizedBox(height: 8,),
-                  Expanded(
+                  tabOptions == TabOptions.allItems
+                  ? Expanded(
                     child: ListView.builder(
                       itemCount: 16,
                       itemBuilder: (context, index){
@@ -170,6 +174,7 @@ class _HomeViewState extends State<HomeView> {
                       }
                     ),
                   )
+                  : const LoadingWidget()
                 ],
               ),
             )
