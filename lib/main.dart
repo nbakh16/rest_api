@@ -42,7 +42,7 @@ class _MyAppState extends State<MyApp> {
         builder: (context, darkThemeProvider, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'Flutter Demo',
+            title: 'Flutter Rest API',
             theme: ThemeStyles.themeData(context, darkThemeProvider.getDarkTheme),
             home: const HomeView(),
           );
