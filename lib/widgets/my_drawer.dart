@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:provider/provider.dart';
+import 'package:rest_api/view/bookmarks_view.dart';
 
 import '../provider/dark_theme_provider.dart';
 import 'my_list_tile.dart';
@@ -29,12 +31,22 @@ class _MyDrawerState extends State<MyDrawer> {
             )
           ),
           MyListTile(
-            title: "My",
-            myTap: (){},
+            icon: IconlyLight.home,
+            title: "Home",
+            myTap: (){
+              Navigator.pop(context);
+            },
           ),
           MyListTile(
-            title: "Home",
-            myTap: (){},
+            icon: IconlyLight.bookmark,
+            title: "Bookmarks",
+            myTap: (){
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const BookmarksView()),
+              );
+            },
           ),
           Divider(thickness: 2, color: Theme.of(context).primaryColor),
           SwitchListTile(
