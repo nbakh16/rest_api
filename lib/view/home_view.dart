@@ -2,6 +2,7 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rest_api/provider/dark_theme_provider.dart';
+import 'package:rest_api/view/search_view.dart';
 import 'package:rest_api/view/trending_list.dart';
 import '../constants/vars.dart';
 import '../widgets/my_btn.dart';
@@ -39,7 +40,12 @@ class _HomeViewState extends State<HomeView> {
           backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
           actions: [
             IconButton(
-              onPressed: (){},
+              onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SearchView()),
+                );
+              },
               icon: const Icon(Icons.search)
             )
           ],
